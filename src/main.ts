@@ -1,3 +1,4 @@
+import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import {
@@ -16,6 +17,8 @@ async function bootstrap() {
     type: VersioningType.URI,
     defaultVersion: [VERSION_NEUTRAL, '1', '2']
   })
+
+  app.useGlobalInterceptors(new TransformInterceptor())
 
   await app.listen(3000);
 }

@@ -16,4 +16,9 @@ export class AppController {
     return this.appService.testPost();
   }
 
+  @Get('env')
+  getVariable() {
+    return this.appService.getPathVariable()
+  }
+
 }

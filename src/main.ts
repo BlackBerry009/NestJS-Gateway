@@ -1,3 +1,4 @@
+import { generateDocument } from './doc';
 import { HttpExceptionFilter } from './common/exceptions/http.exceptions.filter';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 import { NestFactory } from '@nestjs/core';
@@ -23,6 +24,8 @@ async function bootstrap() {
   app.useGlobalInterceptors(new TransformInterceptor())
   app.useGlobalFilters(new AllExceptionsFilter(), new HttpExceptionFilter())
 
+  // swagger
+  generateDocument(app)
   await app.listen(3000);
 }
 
